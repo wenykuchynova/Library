@@ -7,6 +7,9 @@ import baseClasses.Lendings;
 
 public class LendingsManager {
 	Connection conn;
+	public LendingsManager(Connection conn){
+		this.conn=conn;
+	}
 	
 	public void addLending(Lendings lending) throws SQLException{
 		String insertCmd="insert into lendings(dateLend,dateBack,readerID,bookID,note) values(+ '"+

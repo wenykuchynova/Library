@@ -7,6 +7,10 @@ import baseClasses.Reader;
 
 public class ReaderManager {
 	Connection conn;
+	public ReaderManager(Connection conn){
+		this.conn=conn;
+		return;
+	}
 	
 	
 	public void addReader(Reader reader) throws SQLException{

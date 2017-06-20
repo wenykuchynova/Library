@@ -7,20 +7,22 @@ import baseClasses.Book;
 
 public class BookManager {
 	Connection conn;
-	
+	public BookManager(Connection conn){
+		this.conn=conn;
+	}
 	
 	public void addBook(Book book) throws SQLException{
-		String insertCmd="insert into books(authorName,authorSurname,title,year,publisher,price,dateIn,dateOut,ISBN,type,) values(+ '"+
+		String insertCmd="insert into books(authorName,authorSurname,title,year,publisher,price,dateIn,dateOut,ISBN,type) values('"+
 	book.getAuthorName()+"','"+
 	book.getAuthorSurname()+"','"+
 	book.getTitle()+"',"+
 	book.getYear()+",'"+
 	book.getPublisher()+"',"+
 	book.getPrice()+","+
-	book.getDateIn()+","+
-	book.getDateOut()+",'"+
+	((book.getDateIn()==null)?("null,"):("'"+book.getDateIn().toString()+"',"))+
+	((book.getDateOut()==null)?("null,'"):("'"+book.getDateOut().toString()+"','"))+
 	book.getISBN()+"','"+
-	book.getType()+"','"+"');"; 
+	book.getType()+"');"; 
 	Statement s = conn.createStatement();
 	s.execute(insertCmd);
 	s.close();
